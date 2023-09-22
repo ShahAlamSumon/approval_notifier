@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_approval_model_form" model="ir.ui.view">
+        <field name="name">approval.model.form</field>
+        <field name="model">approval.model</field>
+        <field name="arch" type="xml">
+            <form string="Approval Model">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="model_id" options='{"no_open": 1, "no_create": 1, "no_create_edit": 1}'/>
+                            <field name="state"  force_save="1" attrs="{'invisible': [('state', '=', False)]}"/>
+                        </group>
+                        <group>
+                            <field name="active" widget="boolean_toggle"/>
+                            <field name="group_id" options='{"no_open": 1, "no_create": 1, "no_create_edit": 1}'/>
+                        </group>
+                    </group>
+                    <button name="action_open" type="object" string="Select State" icon="fa-list"
+                            class="btn btn-primary" style="width: 250px; margin : 10px;"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_approval_model_tree" model="ir.ui.view">
+        <field name="name">approval.model.tree</field>
+        <field name="model">approval.model</field>
+        <field name="arch" type="xml">
+            <tree string="Approval Model">
+                <field name="model_id"/>
+                <field name="state"/>
+                <field name="group_id"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_approval_model" model="ir.actions.act_window">
+        <field name="name">Approval Model</field>
+        <field name="res_model">approval.model</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>No Records.</p>
+        </field>
+    </record>
+
+    <menuitem
+            name="Approval Model"
+            id="menu_approval_model"
+            sequence="101"
+            parent="base.menu_custom"
+            action="action_approval_model"/>
+</odoo>
